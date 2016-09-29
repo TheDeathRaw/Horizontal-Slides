@@ -1,0 +1,120 @@
+/* Custom font @GoogleFonts */
+@import 'https://fonts.googleapis.com/css?family=Titillium+Web:400,700';
+/* custom function to set linear gradient */
+/* custom function to set default translate3d values */
+body {
+  overflow: hidden;
+  height: 100%;
+  margin: 0;
+  font-family: 'Titillium Web', sans-serif;
+}
+.slides {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+.slidesConteneur {
+  float: left;
+  position: relative;
+  -webkit-transition: all 0.8s ease 0s;
+  -moz-transition: all 0.8s ease 0s;
+  -ms-transition: all 0.8s ease 0s;
+  transition: all 0.8s ease 0s;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  -moz-transform: translate3d(0px, 0px, 0px);
+  -ms-transform: translate3d(0px, 0px, 0px);
+  transform: translate3d(0px, 0px, 0px);
+}
+.slide,
+.slidesConteneur {
+  float: left;
+  position: relative;
+  display: block;
+  height: 100%;
+}
+.innerSlide {
+  display: table-cell;
+  height: 100%;
+  padding: 0 10vw;
+  vertical-align: middle;
+  width: 100vw;
+  color: #fff;
+}
+.innerSlide h3 {
+  font-size: 2.2vw;
+  text-shadow: 0 0 2px #999;
+}
+.innerSlide p {
+  font-size: 1.1vw;
+  line-height: 1.4vw;
+  margin-top: 5vh;
+  text-shadow: 0 0 2px #999;
+}
+/* style of buttons next/prev */
+.previous,
+.next {
+  border-style: solid;
+  cursor: pointer;
+  height: 0;
+  position: absolute;
+  top: 50vh;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  -moz-transform: translate3d(0px, 0px, 0px);
+  -ms-transform: translate3d(0px, 0px, 0px);
+  transform: translate3d(0px, 0px, 0px);
+  width: 0;
+  z-index: 4;
+}
+.previous {
+  border-color: transparent #ffffff transparent transparent;
+  border-width: 2vw 2vw 2vw 0;
+  left: 15px;
+  width: 0;
+}
+.next {
+  border-color: transparent transparent transparent #ffffff;
+  border-width: 2vw 0 2vw 2vw;
+  right: 15px;
+}
+/* colors of slides */
+#slide1 {
+  background: #F09819;
+  background: linear-gradient(to left, #F09819, #EDDE5D);
+  background: -webkit-linear-gradient(to left, #F09819, #EDDE5D);
+  background: -moz-linear-gradient(to left, #F09819, #EDDE5D);
+  background: -ms-linear-gradient(to left, #F09819, #EDDE5D);
+  background: -o-linear-gradient(to left, #F09819, #EDDE5D);
+}
+#slide2 {
+  background: #904e95;
+  background: linear-gradient(to left, #904e95, #F09819);
+  background: -webkit-linear-gradient(to left, #904e95, #F09819);
+  background: -moz-linear-gradient(to left, #904e95, #F09819);
+  background: -ms-linear-gradient(to left, #904e95, #F09819);
+  background: -o-linear-gradient(to left, #904e95, #F09819);
+}
+#slide3 {
+  background: #e96443;
+  background: linear-gradient(to left, #e96443, #904e95);
+  background: -webkit-linear-gradient(to left, #e96443, #904e95);
+  background: -moz-linear-gradient(to left, #e96443, #904e95);
+  background: -ms-linear-gradient(to left, #e96443, #904e95);
+  background: -o-linear-gradient(to left, #e96443, #904e95);
+}
+#slide4 {
+  background: #CB3066;
+  background: linear-gradient(to left, #CB3066, #e96443);
+  background: -webkit-linear-gradient(to left, #CB3066, #e96443);
+  background: -moz-linear-gradient(to left, #CB3066, #e96443);
+  background: -ms-linear-gradient(to left, #CB3066, #e96443);
+  background: -o-linear-gradient(to left, #CB3066, #e96443);
+}
+#slide5 {
+  background: #16BFFD;
+  background: linear-gradient(to left, #16BFFD, #CB3066);
+  background: -webkit-linear-gradient(to left, #16BFFD, #CB3066);
+  background: -moz-linear-gradient(to left, #16BFFD, #CB3066);
+  background: -ms-linear-gradient(to left, #16BFFD, #CB3066);
+  background: -o-linear-gradient(to left, #16BFFD, #CB3066);
+}

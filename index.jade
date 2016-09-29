@@ -1,0 +1,10 @@
+.slides 
+  .slidesConteneur
+    mixin loopSlides(id, ...slides)
+      each slide in slides
+        div(class=id, id=id+slide)
+          div.innerSlide
+            h3 Title of slide #{slide}
+            p Resize the window !. Nec nibh dignissim hendrerit non sit amet magna. Cras ornare neque ac tellus porttitor, id laoreet tellus vulputate. Proin placerat venenatis ex, id sagittis justo placerat quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dignissim mollis eros scelerisque posuere. Nullam ac tortor nec nibh dignissim hendrerit non sit amet magna. Cras ornare neque ac tellus porttitor, id laoreet tellus vulputate. Proin placerat venenatis ex, id sagittis justo placerat quis. Proin placerat venenatis ex, id sagittis justo placerat quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dignissim mollis eros scelerisque posuere. Nullam ac tortor nec nibh dignissim hendrerit non sit amet magna. Cras ornare neque ac tellus porttitor, id laoreet tellus vulputate. Proin placerat venenatis ex, id sagittis justo placerat quis. Proin placerat venenatis ex, id sagittis justo placerat quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dignissim mollis eros scelerisque posuere. Nullam ac tortor nec nibh dignissim hendrerit non sit amet magna. Cras ornare neque ac tellus porttitor, id laoreet tellus vulputate. Proin placerat venenatis ex, id sagittis justo placerat quis.
+
+    +loopSlides('slide', 1, 2, 3, 4, 5)

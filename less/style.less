@@ -1,0 +1,109 @@
+/* Custom font @GoogleFonts */
+@import 'https://fonts.googleapis.com/css?family=Titillium+Web:400,700';
+
+/* custom function to set linear gradient */
+.linearGradient(@colorStart, @colorEnd) {
+  background: @colorStart;
+  background: linear-gradient(to left, @colorStart, @colorEnd); 
+  background: -webkit-linear-gradient(to left, @colorStart, @colorEnd); 
+  background: -moz-linear-gradient(to left, @colorStart, @colorEnd); 
+  background: -ms-linear-gradient(to left, @colorStart, @colorEnd); 
+  background: -o-linear-gradient(to left, @colorStart, @colorEnd); 
+}
+
+/* custom function to set default translate3d values */
+.setTranslate3d(@values) {
+  -webkit-transform: translate3d(@values, @values, @values);
+  -moz-transform: translate3d(@values, @values, @values); 
+  -ms-transform: translate3d(@values, @values, @values); 
+  transform: translate3d(@values, @values, @values); 
+}
+
+body { 
+  overflow: hidden;
+  height: 100%;
+  margin:0;
+  font-family: 'Titillium Web', sans-serif; 
+}
+
+.slides {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+.slidesConteneur {
+  float: left;
+  position: relative;
+  -webkit-transition: all 0.8s ease 0s;
+  -moz-transition: all 0.8s ease 0s; 
+  -ms-transition: all 0.8s ease 0s; 
+  transition: all 0.8s ease 0s; 
+  .setTranslate3d(0px);
+}
+.slide, .slidesConteneur {
+  float: left;
+  position: relative;
+  display: block;
+  height: 100%;
+}
+
+.innerSlide {
+  display: table-cell;
+  height: 100%;
+  padding: 0 10vw;
+  vertical-align: middle;
+  width: 100vw;
+  color: #fff;
+}
+.innerSlide h3 {
+  font-size: 2.2vw;
+  text-shadow: 0 0 2px #999;
+}		
+
+.innerSlide p {
+  font-size: 1.1vw;
+  line-height: 1.4vw;
+  margin-top: 5vh;
+  text-shadow: 0 0 2px #999;
+}
+
+/* style of buttons next/prev */
+.previous, .next {
+  border-style: solid;
+  cursor: pointer;
+  height: 0;
+  position: absolute;
+  top: 50vh;
+  .setTranslate3d(0px);
+  width: 0;
+  z-index: 4;
+}		
+.previous {
+  border-color: transparent #ffffff transparent transparent;
+  border-width: 2vw 2vw 2vw 0;
+  left: 15px;
+  width: 0;
+}		
+.next {
+  border-color: transparent transparent transparent #ffffff;
+  border-width: 2vw 0 2vw 2vw;
+  right: 15px;
+}
+
+/* colors of slides */
+#slide1 {
+  .linearGradient(#F09819, #EDDE5D);
+}		
+#slide2 { 
+  .linearGradient(#904e95, #F09819);
+}		
+#slide3 {
+  .linearGradient(#e96443, #904e95);
+}		
+#slide4 {
+  .linearGradient(#CB3066, #e96443);
+}		
+#slide5 {
+  .linearGradient(#16BFFD, #CB3066);
+}		
