@@ -1,4 +1,4 @@
-# horizontal_slides
+# Horizontal Slider
 
 <img src="https://github.com/TheDeathRaw/Horizontal-Slides/blob/master/screenshot.png" alt="Horizontal slides" />
 
