@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width">	
+	<title>Horizontal Slides jQuery</title>
+	<style type="text/css" media="screen">
+		@import 'https://fonts.googleapis.com/css?family=Titillium+Web:400,700';
+
+		* {
+			margin:0;
+			padding:0;
+		}
+		body { 
+			height: 100%;
+			margin:0;
+			font-family: 'Titillium Web', sans-serif; 
+		}
+		.slides {
+			height: 100%;
+		    overflow: hidden;
+		    position: relative;
+		    z-index: 1;
+		}
+		.slidesConteneur {
+		    float: left;
+		    position: relative;
+		    -webkit-transition: all 0.8s ease 0s;
+		    -moz-transition: all 0.8s ease 0s; 
+      		-ms-transition: all 0.8s ease 0s; 
+          	transition: all 0.8s ease 0s; 
+		    -webkit-transform: translate3d(0px, 0px, 0px);
+		    -moz-transform: translate3d(0px, 0px, 0px); 
+      		-ms-transform: translate3d(0px, 0px, 0px); 
+          	transform: translate3d(0px, 0px, 0px); 
+		}
+		.slide, .slidesConteneur {
+			float: left;
+			position: relative;
+		    display: block;
+		    height: 100%;
+		}
+
+		.innerSlide {
+		    display: table-cell;
+		    height: 100%;
+		    padding: 0 10vw;
+		    vertical-align: middle;
+		    width: 100vw;
+		    color: #fff;
+		}
+		.innerSlide h3 {
+			font-size: 4vw;
+			text-shadow: #ccc 0 1px 0, #c9c9c9 0 2px 0, #bbb 0 3px 0, #b9b9b9 0 4px 0, #aaa 0 5px 0,rgba(0,0,0,.1) 0 6px 1px, rgba(0,0,0,.1) 0 0 5px, rgba(0,0,0,.3) 0 1px 3px, rgba(0,0,0,.15) 0 3px 5px, rgba(0,0,0,.2) 0 5px 10px, rgba(0,0,0,.2) 0 10px 10px, rgba(0,0,0,.1) 0 20px 20px;
+		}		
+
+		.innerSlide p {
+			font-size: 1.2vw;
+			margin-top: 2vh;
+			text-shadow: 0 1px 0 #ccc, 0 1px 0 #c9c9c9, 0 0 2px #bbb, 0 0 0 #b9b9b9, 0 0 1px #aaa, 0 0 1px rgba(0, 0, 0, 0.1);
+		}
+
+		.previous, .next {
+		    border-style: solid;
+		    cursor: pointer;
+		    height: 0;
+		    position: absolute;
+		    top: 50vh;
+		    -webkit-transform: translate3d(0px, 0px, 0px);
+		    -moz-transform: translate3d(0px, 0px, 0px); 
+      		-ms-transform: translate3d(0px, 0px, 0px); 
+          	transform: translate3d(0px, 0px, 0px); 
+		    width: 0;
+		    z-index: 4;
+		}		
+		.previous {
+		    border-color: transparent #ffffff transparent transparent;
+		    border-width: 2vw 2vw 2vw 0;
+		    left: 15px;
+		    width: 0;
+		}		
+		.next {
+		    border-color: transparent transparent transparent #ffffff;
+		    border-width: 2vw 0 2vw 2vw;
+		    right: 15px;
+		}
+
+		#slide1 {
+			background: #F09819;
+			background: linear-gradient(to left, #F09819, #EDDE5D); 
+			background: -webkit-linear-gradient(to left, #F09819, #EDDE5D); 
+			background: -moz-linear-gradient(to left, #F09819, #EDDE5D); 
+			background: -ms-linear-gradient(to left, #F09819, #EDDE5D); 
+			background: -o-linear-gradient(to left, #F09819, #EDDE5D); 
+		}		
+		#slide2 {
+			background: #904e95;
+			background: linear-gradient(to left, #904e95, #F09819); 
+			background: -webkit-linear-gradient(to left, #904e95, #F09819); 
+			background: -moz-linear-gradient(to left, #904e95, #F09819); 
+			background: -ms-linear-gradient(to left, #904e95, #F09819); 
+			background: -o-linear-gradient(to left, #904e95, #F09819); 
+		}		
+		#slide3 {
+			background: #e96443;
+			background: linear-gradient(to left, #e96443, #904e95); 
+			background: -webkit-linear-gradient(to left, #e96443, #904e95); 
+			background: -moz-linear-gradient(to left, #e96443, #904e95); 
+			background: -ms-linear-gradient(to left, #e96443, #904e95); 
+			background: -o-linear-gradient(to left, #e96443, #904e95); 
+		}		
+		#slide4 {
+			background: #CB3066;
+			background: linear-gradient(to left, #CB3066, #e96443); 
+			background: -webkit-linear-gradient(to left, #CB3066, #e96443); 
+			background: -moz-linear-gradient(to left, #CB3066, #e96443); 
+			background: -ms-linear-gradient(to left, #CB3066, #e96443); 
+			background: -o-linear-gradient(to left, #CB3066, #e96443); 
+		}		
+		#slide5 {
+			background: #16BFFD;
+			background: linear-gradient(to left, #16BFFD, #CB3066); 
+			background: -webkit-linear-gradient(to left, #16BFFD, #CB3066); 
+			background: -moz-linear-gradient(to left, #16BFFD, #CB3066); 
+			background: -ms-linear-gradient(to left, #16BFFD, #CB3066); 
+			background: -o-linear-gradient(to left, #16BFFD, #CB3066); 
+		}		
+	</style>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.transform2d.js"></script>
+	<script>
+		$(document).ready(function() {
+			// ajout d'une classe afin de connaitre le slide actuellement visible
+			$('.slide:first').addClass('slideActuel');
+
+			// ajout des boutons suivant / precedent apres les slides
+			$('.slides').after('<div class="previous"></div><div class="next"></div>');
+
+			// on definie la largeur du conteneur
+			var CountSlides = $('.slide').length;
+			$('.slidesConteneur').css('width', CountSlides + '00%');
+
+			// on definie la largeur de chaque slides
+			var CssSlides = 100 / CountSlides;
+			$('.slide').each(function(index) {
+				$(this).css('width', CssSlides + '%').attr('data-slide', index);
+			});
+
+			// on definie la hauteur de chaque div inner dans chaque slides
+			var hauteurFenetre = $(window).height();
+			$('.innerSlide').each(function() {
+				$(this).css('height', hauteurFenetre + 'px');
+			});		
+
+			// gestion du resize du navigateur 
+			$(window).resize(function(){
+				// resize de la hauteur des inner des slides
+				var hauteurFenetre_ = $(window).height();
+				$('.innerSlide').stop().animate({ height: hauteurFenetre_ + 'px' }, 0);	
+
+				// resize de la largeur du conteneur des slides
+				var R_largeurFenetre = $(window).width();
+				var R_dataSlide = $('.slide.slideActuel').attr("data-slide");
+				var R_calculTranslate = R_dataSlide * R_largeurFenetre;
+
+				if (R_dataSlide > 0) {
+					R_calculTranslate = '-' + R_calculTranslate;
+				}
+
+				$('.slidesConteneur').stop().animate({
+					transform: 'translateX(' + R_calculTranslate + 'px)'
+				}, 1);
+			}); 	
+
+			$('.next').click(function() {
+				var largeurFenetre = $(window).width();
+
+				// check si le prochain element est une div .slide
+				if ($('.slide.slideActuel').next().is('div.slide')) {
+					var dataSlide = $('.slide.slideActuel').next().attr("data-slide");
+					var calculTranslate = dataSlide * largeurFenetre;
+
+					if (dataSlide > 0) {
+						calculTranslate = '-' + calculTranslate;
+					}
+
+					$('.slideActuel').next().addClass('slideActuel');
+					$('.slideActuel:first').removeClass('slideActuel');
+
+					$('.slidesConteneur').animate({
+						transform: 'translateX(' + calculTranslate + 'px)'
+					});
+				} else {
+					// sinon on slide jusqu'au premier slide
+					CheckElementCache('first', largeurFenetre);				
+				}
+			});			
+
+			$('.previous').click(function() {
+				var largeurFenetre = $(window).width();
+
+				// check si le precedent element est une div .slide
+				if ($('.slide.slideActuel').prev().is('div.slide')) {
+					var dataSlide = $('.slide.slideActuel').prev().attr("data-slide");
+					var calculTranslate = dataSlide * largeurFenetre;
+
+					if (dataSlide > 0) {
+						calculTranslate = '-' + calculTranslate;
+					}
+
+					$('.slideActuel').prev().addClass('slideActuel');
+					$('.slideActuel:last').removeClass('slideActuel');
+
+					$('.slidesConteneur').animate({
+						transform: 'translateX(' + calculTranslate + 'px)'
+					});
+				} else {
+					// sinon on slide jusqu'au dernier slide
+					CheckElementCache('last', largeurFenetre);				
+				}
+			});
+		});
+
+		function CheckElementCache (type, largeurFenetre) {
+			var dataSlide = $('.slide:' + type).attr("data-slide");
+			var calculTranslate = dataSlide * largeurFenetre;
+
+			if (dataSlide > 0) {
+				calculTranslate = '-' + calculTranslate;
+			}
+
+			$('.slideActuel').removeClass('slideActuel');
+			$('.slide:' + type).addClass('slideActuel');
+
+			$('.slidesConteneur').animate({
+				transform: 'translateX(' + calculTranslate + 'px)'
+			});	
+		}
+	</script>
+</head>
+<body>
+	<div class="slides">
+		<div class="slidesConteneur">
+			<div id="slide1" class="slide">
+				<div class="innerSlide">
+					<h3>Titre du slide 1</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dignissim mollis eros scelerisque posuere. Nullam ac tortor nec nibh dignissim hendrerit non sit amet magna. Cras ornare neque ac tellus porttitor, id laoreet tellus vulputate. Proin placerat venenatis ex, id sagittis justo placerat quis. <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab nostrum delectus iste sit officia! Molestiae ducimus, sunt omnis earum vitae vel dolore, blanditiis placeat porro aliquid non repudiandae, recusandae quisquam.</span>
+					<span>Consequuntur sequi voluptatem odit aliquid. Aut doloremque veritatis, omnis sit eum eaque nemo voluptas, repellat ab recusandae culpa eos quam! Atque explicabo labore repellat consequuntur cumque adipisci, eum quos eveniet!</span>
+					<span>Eligendi quod sunt sint provident, cum nobis culpa magnam iure, totam nisi quo maxime. Hic, fugit, iusto. Veniam est nulla debitis commodi provident fugiat quam earum, incidunt, cum vel minima.</span>
+					<span>Obcaecati cum aliquam soluta repellat cupiditate in, quibusdam illo laboriosam odio, voluptate explicabo sed reprehenderit. Sapiente ducimus, quam excepturi iusto aut, eos earum, libero ex beatae exercitationem perspiciatis deleniti veniam!</span>
+					<span>Quod impedit sit necessitatibus libero ea dolore dicta distinctio eveniet quaerat porro illum animi dolores commodi soluta molestiae quasi illo, facilis tempora delectus nobis rem nulla iure labore? Laboriosam, eaque.</span>
+					<span>Impedit optio, cum possimus magnam, quae sequi earum sed vitae? Nam magni, fugit quam provident ratione, omnis et aliquid quis veritatis magnam pariatur quas modi, autem perferendis voluptates cum. Aut.</span>
+					<span>Accusantium facere aperiam quaerat, sint doloribus iste aliquam molestias unde nihil, omnis repellendus voluptas inventore labore pariatur, delectus! Omnis eius nostrum blanditiis perferendis molestiae voluptas accusantium est provident veritatis deleniti!</span>
+					<span>Delectus eveniet, laudantium quibusdam atque totam maxime repellat dolore eum a animi minima nobis, aliquid at suscipit. Amet repudiandae, odit, adipisci optio dicta repellendus accusantium alias qui ipsa quasi atque.</span>
+					<span>Cupiditate ullam labore illum repudiandae distinctio, esse? Sequi dignissimos voluptates natus, atque aperiam doloremque, vel laborum quos alias, id ducimus praesentium explicabo consequuntur porro, impedit labore! Iusto vitae minus, autem.</span>
+					<span>Illo laborum rem mollitia deleniti, neque animi, ipsa. Debitis neque enim earum, reiciendis. Hic, doloremque amet! Consectetur ipsum labore laborum soluta, doloremque nulla aliquid, id est repellendus, eos, quasi praesentium.</span>
+					</p>
+				</div>
+			</div>		
+
+			<div id="slide2" class="slide">
+				<div class="innerSlide">
+					<h3>Titre du slide 2</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dignissim mollis eros scelerisque posuere. Nullam ac tortor nec nibh dignissim hendrerit non sit amet magna. Cras ornare neque ac tellus porttitor, id laoreet tellus vulputate. Proin placerat venenatis ex, id sagittis justo placerat quis. <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab nostrum delectus iste sit officia! Molestiae ducimus, sunt omnis earum vitae vel dolore, blanditiis placeat porro aliquid non repudiandae, recusandae quisquam.</span>
+					<span>Consequuntur sequi voluptatem odit aliquid. Aut doloremque veritatis, omnis sit eum eaque nemo voluptas, repellat ab recusandae culpa eos quam! Atque explicabo labore repellat consequuntur cumque adipisci, eum quos eveniet!</span>
+					<span>Eligendi quod sunt sint provident, cum nobis culpa magnam iure, totam nisi quo maxime. Hic, fugit, iusto. Veniam est nulla debitis commodi provident fugiat quam earum, incidunt, cum vel minima.</span>
+					<span>Obcaecati cum aliquam soluta repellat cupiditate in, quibusdam illo laboriosam odio, voluptate explicabo sed reprehenderit. Sapiente ducimus, quam excepturi iusto aut, eos earum, libero ex beatae exercitationem perspiciatis deleniti veniam!</span>
+					<span>Quod impedit sit necessitatibus libero ea dolore dicta distinctio eveniet quaerat porro illum animi dolores commodi soluta molestiae quasi illo, facilis tempora delectus nobis rem nulla iure labore? Laboriosam, eaque.</span>
+					<span>Impedit optio, cum possimus magnam, quae sequi earum sed vitae? Nam magni, fugit quam provident ratione, omnis et aliquid quis veritatis magnam pariatur quas modi, autem perferendis voluptates cum. Aut.</span>
+					<span>Accusantium facere aperiam quaerat, sint doloribus iste aliquam molestias unde nihil, omnis repellendus voluptas inventore labore pariatur, delectus! Omnis eius nostrum blanditiis perferendis molestiae voluptas accusantium est provident veritatis deleniti!</span>
+					<span>Delectus eveniet, laudantium quibusdam atque totam maxime repellat dolore eum a animi minima nobis, aliquid at suscipit. Amet repudiandae, odit, adipisci optio dicta repellendus accusantium alias qui ipsa quasi atque.</span>
+					<span>Cupiditate ullam labore illum repudiandae distinctio, esse? Sequi dignissimos voluptates natus, atque aperiam doloremque, vel laborum quos alias, id ducimus praesentium explicabo consequuntur porro, impedit labore! Iusto vitae minus, autem.</span>
+					<span>Illo laborum rem mollitia deleniti, neque animi, ipsa. Debitis neque enim earum, reiciendis. Hic, doloremque amet! Consectetur ipsum labore laborum soluta, doloremque nulla aliquid, id est repellendus, eos, quasi praesentium.</span>
+					</p>
+				</div>
+			</div>	
+
+			<div id="slide3" class="slide">
+				<div class="innerSlide">
+					<h3>Titre du slide 3</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dignissim mollis eros scelerisque posuere. Nullam ac tortor nec nibh dignissim hendrerit non sit amet magna. Cras ornare neque ac tellus porttitor, id laoreet tellus vulputate. Proin placerat venenatis ex, id sagittis justo placerat quis. <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab nostrum delectus iste sit officia! Molestiae ducimus, sunt omnis earum vitae vel dolore, blanditiis placeat porro aliquid non repudiandae, recusandae quisquam.</span>
+					<span>Consequuntur sequi voluptatem odit aliquid. Aut doloremque veritatis, omnis sit eum eaque nemo voluptas, repellat ab recusandae culpa eos quam! Atque explicabo labore repellat consequuntur cumque adipisci, eum quos eveniet!</span>
+					<span>Eligendi quod sunt sint provident, cum nobis culpa magnam iure, totam nisi quo maxime. Hic, fugit, iusto. Veniam est nulla debitis commodi provident fugiat quam earum, incidunt, cum vel minima.</span>
+					<span>Obcaecati cum aliquam soluta repellat cupiditate in, quibusdam illo laboriosam odio, voluptate explicabo sed reprehenderit. Sapiente ducimus, quam excepturi iusto aut, eos earum, libero ex beatae exercitationem perspiciatis deleniti veniam!</span>
+					<span>Quod impedit sit necessitatibus libero ea dolore dicta distinctio eveniet quaerat porro illum animi dolores commodi soluta molestiae quasi illo, facilis tempora delectus nobis rem nulla iure labore? Laboriosam, eaque.</span>
+					<span>Impedit optio, cum possimus magnam, quae sequi earum sed vitae? Nam magni, fugit quam provident ratione, omnis et aliquid quis veritatis magnam pariatur quas modi, autem perferendis voluptates cum. Aut.</span>
+					<span>Accusantium facere aperiam quaerat, sint doloribus iste aliquam molestias unde nihil, omnis repellendus voluptas inventore labore pariatur, delectus! Omnis eius nostrum blanditiis perferendis molestiae voluptas accusantium est provident veritatis deleniti!</span>
+					<span>Delectus eveniet, laudantium quibusdam atque totam maxime repellat dolore eum a animi minima nobis, aliquid at suscipit. Amet repudiandae, odit, adipisci optio dicta repellendus accusantium alias qui ipsa quasi atque.</span>
+					<span>Cupiditate ullam labore illum repudiandae distinctio, esse? Sequi dignissimos voluptates natus, atque aperiam doloremque, vel laborum quos alias, id ducimus praesentium explicabo consequuntur porro, impedit labore! Iusto vitae minus, autem.</span>
+					<span>Illo laborum rem mollitia deleniti, neque animi, ipsa. Debitis neque enim earum, reiciendis. Hic, doloremque amet! Consectetur ipsum labore laborum soluta, doloremque nulla aliquid, id est repellendus, eos, quasi praesentium.</span>
+					</p>
+				</div>
+			</div>	
+
+			<div id="slide4" class="slide">
+				<div class="innerSlide">
+					<h3>Titre du slide 4</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dignissim mollis eros scelerisque posuere. Nullam ac tortor nec nibh dignissim hendrerit non sit amet magna. Cras ornare neque ac tellus porttitor, id laoreet tellus vulputate. Proin placerat venenatis ex, id sagittis justo placerat quis. <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab nostrum delectus iste sit officia! Molestiae ducimus, sunt omnis earum vitae vel dolore, blanditiis placeat porro aliquid non repudiandae, recusandae quisquam.</span>
+					<span>Consequuntur sequi voluptatem odit aliquid. Aut doloremque veritatis, omnis sit eum eaque nemo voluptas, repellat ab recusandae culpa eos quam! Atque explicabo labore repellat consequuntur cumque adipisci, eum quos eveniet!</span>
+					<span>Eligendi quod sunt sint provident, cum nobis culpa magnam iure, totam nisi quo maxime. Hic, fugit, iusto. Veniam est nulla debitis commodi provident fugiat quam earum, incidunt, cum vel minima.</span>
+					<span>Obcaecati cum aliquam soluta repellat cupiditate in, quibusdam illo laboriosam odio, voluptate explicabo sed reprehenderit. Sapiente ducimus, quam excepturi iusto aut, eos earum, libero ex beatae exercitationem perspiciatis deleniti veniam!</span>
+					<span>Quod impedit sit necessitatibus libero ea dolore dicta distinctio eveniet quaerat porro illum animi dolores commodi soluta molestiae quasi illo, facilis tempora delectus nobis rem nulla iure labore? Laboriosam, eaque.</span>
+					<span>Impedit optio, cum possimus magnam, quae sequi earum sed vitae? Nam magni, fugit quam provident ratione, omnis et aliquid quis veritatis magnam pariatur quas modi, autem perferendis voluptates cum. Aut.</span>
+					<span>Accusantium facere aperiam quaerat, sint doloribus iste aliquam molestias unde nihil, omnis repellendus voluptas inventore labore pariatur, delectus! Omnis eius nostrum blanditiis perferendis molestiae voluptas accusantium est provident veritatis deleniti!</span>
+					<span>Delectus eveniet, laudantium quibusdam atque totam maxime repellat dolore eum a animi minima nobis, aliquid at suscipit. Amet repudiandae, odit, adipisci optio dicta repellendus accusantium alias qui ipsa quasi atque.</span>
+					<span>Cupiditate ullam labore illum repudiandae distinctio, esse? Sequi dignissimos voluptates natus, atque aperiam doloremque, vel laborum quos alias, id ducimus praesentium explicabo consequuntur porro, impedit labore! Iusto vitae minus, autem.</span>
+					<span>Illo laborum rem mollitia deleniti, neque animi, ipsa. Debitis neque enim earum, reiciendis. Hic, doloremque amet! Consectetur ipsum labore laborum soluta, doloremque nulla aliquid, id est repellendus, eos, quasi praesentium.</span>
+					</p>
+				</div>
+			</div>	
+
+			<div id="slide5" class="slide">
+				<div class="innerSlide">
+					<h3>Titre du slide 5</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dignissim mollis eros scelerisque posuere. Nullam ac tortor nec nibh dignissim hendrerit non sit amet magna. Cras ornare neque ac tellus porttitor, id laoreet tellus vulputate. Proin placerat venenatis ex, id sagittis justo placerat quis. <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab nostrum delectus iste sit officia! Molestiae ducimus, sunt omnis earum vitae vel dolore, blanditiis placeat porro aliquid non repudiandae, recusandae quisquam.</span>
+					<span>Consequuntur sequi voluptatem odit aliquid. Aut doloremque veritatis, omnis sit eum eaque nemo voluptas, repellat ab recusandae culpa eos quam! Atque explicabo labore repellat consequuntur cumque adipisci, eum quos eveniet!</span>
+					<span>Eligendi quod sunt sint provident, cum nobis culpa magnam iure, totam nisi quo maxime. Hic, fugit, iusto. Veniam est nulla debitis commodi provident fugiat quam earum, incidunt, cum vel minima.</span>
+					<span>Obcaecati cum aliquam soluta repellat cupiditate in, quibusdam illo laboriosam odio, voluptate explicabo sed reprehenderit. Sapiente ducimus, quam excepturi iusto aut, eos earum, libero ex beatae exercitationem perspiciatis deleniti veniam!</span>
+					<span>Quod impedit sit necessitatibus libero ea dolore dicta distinctio eveniet quaerat porro illum animi dolores commodi soluta molestiae quasi illo, facilis tempora delectus nobis rem nulla iure labore? Laboriosam, eaque.</span>
+					<span>Impedit optio, cum possimus magnam, quae sequi earum sed vitae? Nam magni, fugit quam provident ratione, omnis et aliquid quis veritatis magnam pariatur quas modi, autem perferendis voluptates cum. Aut.</span>
+					<span>Accusantium facere aperiam quaerat, sint doloribus iste aliquam molestias unde nihil, omnis repellendus voluptas inventore labore pariatur, delectus! Omnis eius nostrum blanditiis perferendis molestiae voluptas accusantium est provident veritatis deleniti!</span>
+					<span>Delectus eveniet, laudantium quibusdam atque totam maxime repellat dolore eum a animi minima nobis, aliquid at suscipit. Amet repudiandae, odit, adipisci optio dicta repellendus accusantium alias qui ipsa quasi atque.</span>
+					<span>Cupiditate ullam labore illum repudiandae distinctio, esse? Sequi dignissimos voluptates natus, atque aperiam doloremque, vel laborum quos alias, id ducimus praesentium explicabo consequuntur porro, impedit labore! Iusto vitae minus, autem.</span>
+					<span>Illo laborum rem mollitia deleniti, neque animi, ipsa. Debitis neque enim earum, reiciendis. Hic, doloremque amet! Consectetur ipsum labore laborum soluta, doloremque nulla aliquid, id est repellendus, eos, quasi praesentium.</span>
+					</p>
+				</div>
+			</div>	
+		</div>
+	</div>
+</body>
+</html>
